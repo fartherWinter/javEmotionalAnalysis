@@ -23,7 +23,8 @@ def test_secret_input_rejected():
         validate_request({"id": "1", "method": "predict", "state": {"user_request": "token=abc123"}})
 
 
-def test_jsonl_fallback_and_invalid_json():
+def test_jsonl_fallback_and_invalid_json(monkeypatch):
+    monkeypatch.setenv("LAYA_DISABLE_MODEL", "1")
     inp = io.StringIO('{"id":"a","method":"predict","state":{"user_request":"分析","recent_messages":[]}}\nnot-json\n')
     out = io.StringIO()
     run_jsonl(LayaEngine(), inp, out)

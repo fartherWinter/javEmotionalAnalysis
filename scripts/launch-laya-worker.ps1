@@ -3,6 +3,7 @@ param(
   [string]$Venv = (Join-Path $PSScriptRoot "..\.venv-laya")
 )
 $ErrorActionPreference = "Stop"
+$env:PYTHONUTF8 = "1"
 $root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $env:PYTHONPATH = $root
 $env:LAYA_ALLOW_NETWORK = "0"
